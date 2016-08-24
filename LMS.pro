@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     date.cpp \
-    bookinfo.cpp
+    bookinfo.cpp \
+    readerinfo.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
-    bookinfo.h
+    bookinfo.h \
+    readerinfo.h
 
 FORMS    += mainwindow.ui

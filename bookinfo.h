@@ -20,21 +20,21 @@ public:
     BookInfo(std::string id, std::string ztId, std::string name, std::string author, std::string press, Date dateOfPublication, std::string ISBN, std::string editionNumber, double price);
 
     std::string getId();
-    void setId(string id);
+    void setId(std::string id);
     std::string getZtId();
-    void setZtId(string ztId);
+    void setZtId(std::string ztId);
     std::string getName();
-    void setName(string name);
+    void setName(std::string name);
     std::string getAuthor();
-    void setAuthor(string author);
+    void setAuthor(std::string author);
     std::string getPress();
-    void setPress(string press);
+    void setPress(std::string press);
     Date getDateOfPublication();
     void setDateOfPublication(Date dateOfPublication);
     std::string getISBN();
-    void setISBN(string iSBN);
+    void setISBN(std::string iSBN);
     std::string getEditionNumber();
-    void setEditionNumber(string editionNumber);
+    void setEditionNumber(std::string editionNumber);
     double getPrice();
     void setPrice(double price);
 

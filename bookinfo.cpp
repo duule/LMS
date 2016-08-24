@@ -19,31 +19,31 @@ BookInfo::BookInfo(std::string id, std::string ztId, std::string name, std::stri
 std::string BookInfo::getId() {
     return this->id;
 }
-void BookInfo::setId(string id) {
+void BookInfo::setId(std::string id) {
     this->id = id;
 }
 std::string BookInfo::getZtId() {
     return this->ztId;
 }
-void BookInfo::setZtId(string ztId) {
+void BookInfo::setZtId(std::string ztId) {
     this->ztId = ztId;
 }
 std::string BookInfo::getName() {
     return this->name;
 }
-void BookInfo::setName(string name) {
+void BookInfo::setName(std::string name) {
     this->name = name;
 }
 std::string BookInfo::getAuthor() {
     return this->author;
 }
-void BookInfo::setAuthor(string author) {
+void BookInfo::setAuthor(std::string author) {
     this->author = author;
 }
 std::string BookInfo::getPress() {
     return this->press;
 }
-void BookInfo::setPress(string press) {
+void BookInfo::setPress(std::string press) {
     this->press = press;
 }
 Date BookInfo::getDateOfPublication() {
@@ -55,13 +55,13 @@ void BookInfo::setDateOfPublication(Date dateOfPublication) {
 std::string BookInfo::getISBN() {
     return this->ISBN;
 }
-void BookInfo::setISBN(string iSBN) {
+void BookInfo::setISBN(std::string iSBN) {
     ISBN = iSBN;
 }
 std::string BookInfo::getEditionNumber() {
     return this->editionNumber;
 }
-void BookInfo::setEditionNumber(string editionNumber) {
+void BookInfo::setEditionNumber(std::string editionNumber) {
     this->editionNumber = editionNumber;
 }
 double BookInfo::getPrice() {

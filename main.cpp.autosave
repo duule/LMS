@@ -14,6 +14,6 @@ int main(int argc, char *argv[])
     BookInfo f("123","12","haha","dule","imu",s, "fdsa",  "01",999.98);
 
 
-    ReaderInfo l("111","dule",ReaderInfo::Departments::计算机学院,ReaderInfo::ReaderType::Undergraduate);
+    ReaderInfo l("111","dule",ReaderInfo::Departments::计算机学院,ReaderInfo::ReaderType::Undergraduate);A
     return a.exec();
 }
