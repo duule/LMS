@@ -26,6 +26,17 @@ private:
     ReaderInfo::ReaderType type;
 public:
     ReaderInfo(std::string id, std::string name, ReaderInfo::Departments department, ReaderInfo::ReaderType type);
+
+    std::string getId();
+    void setId(std::string id);
+    std::string getName();
+    void setName(std::string name);
+    ReaderInfo::Departments getDepartment();
+    void setDepartment(ReaderInfo::Departments department);
+    ReaderInfo::ReaderType getType();
+    void setType(ReaderInfo::ReaderType type);
+
+    void display();
 };
 
 #endif // READERINFO_H

@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
+#include <QSqlRecord>
+#include "search.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +20,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
-};
+private slots:
+    void loginButtonOnClicked();
 
+};
 #endif // MAINWINDOW_H

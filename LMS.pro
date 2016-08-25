@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,11 +17,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     date.cpp \
     bookinfo.cpp \
-    readerinfo.cpp
+    readerinfo.cpp \
+    list.cpp \
+    search.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
     bookinfo.h \
-    readerinfo.h
+    readerinfo.h \
+    list.h \
+    search.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    search.ui
