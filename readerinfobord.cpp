@@ -33,6 +33,7 @@ void ReaderInfoBord::init(){
     }
     qDebug()<<"error!!!";
 }
+void ReaderInfoBord::changePasswordButtonOnClicked(){
     ChangePasswordBord* cpw = new ChangePasswordBord(this->readerId);
     cpw->show();
 }

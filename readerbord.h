@@ -9,6 +9,7 @@
 #include "mainwindow.h"
 #include "search.h"
 #include "readerinfobord.h"
+#include "borrowbord.h"
 
 namespace Ui {
 class ReaderBord;
@@ -21,14 +22,14 @@ class ReaderBord : public QMainWindow
 public:
     explicit ReaderBord(QString id,QString name, QMainWindow* mainwindow, QWidget *parent = 0);
     ~ReaderBord();
-
+    void init();
 private:
     Ui::ReaderBord *ui;
     Search* search;
-    void init();
     QString readerid;
     QString readername;
     QMainWindow* mainwindow;
+    BorrowBord* bb;
 private slots:
     void searchButtonOnClicked();
     void myInfoButtonOnClicked();

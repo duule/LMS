@@ -10,6 +10,7 @@ ReaderBord::ReaderBord(QString id, QString name, QMainWindow* mainwindow, QWidge
     this->readername = name;
     this->mainwindow = mainwindow;
     search = new Search();
+    bb = new BorrowBord(this,this->readerid);
     init();
     connect(ui->btn_search,SIGNAL(clicked(bool)),this,SLOT(searchButtonOnClicked()));
     connect(ui->btn_myInfo,SIGNAL(clicked(bool)),this,SLOT(myInfoButtonOnClicked()));
@@ -62,7 +63,7 @@ void ReaderBord::myInfoButtonOnClicked(){
     rib->show();
 }
 void ReaderBord::borrowButtonOnClicked(){
-
+    bb->show();
 }
 void ReaderBord::unborrowButtonOnClicked(){
 

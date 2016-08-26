@@ -7,10 +7,10 @@ ChangePasswordBord::ChangePasswordBord(QString id, QWidget *parent) :
 {
     ui->setupUi(this);
     this->id = id;
-    connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(buttonbosAcceptOnClicked()));
+    connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(buttonboxAcceptOnClicked()));
 }
 
-void ChangePasswordBord::buttonbosAcceptOnClicked(){
+void ChangePasswordBord::buttonboxAcceptOnClicked(){
     QString newPassword = ui->tf_newpass->text();
     QString reNewPassword = ui->tf_renewpass->text();
     if(newPassword == reNewPassword){

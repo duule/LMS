@@ -27,7 +27,7 @@ private:
     Ui::ChangePasswordBord *ui;
     QString id;
 private slots:
-    void buttonbosAcceptOnClicked();
+    void buttonboxAcceptOnClicked();
 };
 
 #endif // CHANGEPASSWORDBORD_H
