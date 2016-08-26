@@ -8,6 +8,7 @@
 #include <QStandardItemModel>
 #include "mainwindow.h"
 #include "search.h"
+#include "readerinfobord.h"
 
 namespace Ui {
 class ReaderBord;
@@ -23,12 +24,16 @@ public:
 
 private:
     Ui::ReaderBord *ui;
+    Search* search;
     void init();
     QString readerid;
     QString readername;
     QMainWindow* mainwindow;
 private slots:
     void searchButtonOnClicked();
+    void myInfoButtonOnClicked();
+    void borrowButtonOnClicked();
+    void unborrowButtonOnClicked();
 };
 
 #endif // READERBORD_H

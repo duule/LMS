@@ -95,12 +95,6 @@ void Search::searchButtonOnClicked(){
         sql += ";";
     }
     qDebug()<<sql;
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("127.0.0.1");
-    db.setDatabaseName("LMS");
-    db.setUserName("root");
-    db.setPassword("Tami16.");
-    if (!db.open()) qDebug() << "Failed to connect to root mysql admin";
     QSqlQueryModel *model = new QSqlQueryModel();
     model->setQuery(sql);
     model->setHeaderData(0, Qt::Horizontal, "ID");
@@ -116,7 +110,6 @@ void Search::searchButtonOnClicked(){
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setEditTriggers (QAbstractItemView::NoEditTriggers );
     ui->tableView->setModel(model);
-    db.close();
 }
 
 Search::~Search()

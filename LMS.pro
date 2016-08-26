@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     readerinfo.cpp \
     list.cpp \
     search.cpp \
-    readerbord.cpp
+    readerbord.cpp \
+    readerinfobord.cpp \
+    changepasswordbord.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
@@ -28,8 +30,12 @@ HEADERS  += mainwindow.h \
     readerinfo.h \
     list.h \
     search.h \
-    readerbord.h
+    readerbord.h \
+    readerinfobord.h \
+    changepasswordbord.h
 
 FORMS    += mainwindow.ui \
     search.ui \
-    readerbord.ui
+    readerbord.ui \
+    readerinfobord.ui \
+    changepasswordbord.ui

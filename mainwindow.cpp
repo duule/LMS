@@ -17,13 +17,13 @@ void MainWindow::loginButtonOnClicked(){
     QString tf_id = ui->tf_id->text();
     QString tf_ps = ui->tf_password->text();
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("127.0.0.1");
-    db.setDatabaseName("LMS");
-    db.setUserName("root");
-    db.setPassword("Tami16.");
-    if (!db.open()) {qDebug() << "Failed to connect to root mysql admin";return;}
-    else{
+//    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+//    db.setHostName("127.0.0.1");
+//    db.setDatabaseName("LMS");
+//    db.setUserName("root");
+//    db.setPassword("Tami16.");
+//    if (!db.open()) {qDebug() << "Failed to connect to root mysql admin";return;}
+//    else{
         QSqlQuery query;
         query.exec("SELECT * FROM readers");
         while(query.next())
@@ -34,14 +34,20 @@ void MainWindow::loginButtonOnClicked(){
             QString id = query.value(idPos).toString();
             QString name = query.value(namePos).toString();
             QString pass = query.value(passPos).toString();
-            if(tf_id == id && tf_ps == pass){
-                ReaderBord* r = new ReaderBord(id,name,this);
-                r->show();
-                this->hide();
-                return;
+            if(tf_id == id){
+                if(tf_ps == pass){
+                    ReaderBord* r = new ReaderBord(id,name,this);
+                    r->show();
+                    this->hide();
+                    return;
+                }
+                else{
+                    QMessageBox::information(NULL,"提示","密码错误！");
+                    return;
+                }
             }
         }
-        qDebug()<<"error!!!";
-    }
-    db.close();
+       QMessageBox::information(NULL,"提示","未找到用户或连接失败！");
+//    }
+//    db.close();
 }

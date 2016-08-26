@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include <QSqlRecord>
+#include <QMessageBox>
 #include "readerbord.h"
 
 namespace Ui {
