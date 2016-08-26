@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include <QSqlRecord>
-#include "search.h"
+#include "readerbord.h"
 
 namespace Ui {
 class MainWindow;

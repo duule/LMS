@@ -19,14 +19,17 @@ SOURCES += main.cpp\
     bookinfo.cpp \
     readerinfo.cpp \
     list.cpp \
-    search.cpp
+    search.cpp \
+    readerbord.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
     bookinfo.h \
     readerinfo.h \
     list.h \
-    search.h
+    search.h \
+    readerbord.h
 
 FORMS    += mainwindow.ui \
-    search.ui
+    search.ui \
+    readerbord.ui

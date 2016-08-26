@@ -35,8 +35,8 @@ void MainWindow::loginButtonOnClicked(){
             QString name = query.value(namePos).toString();
             QString pass = query.value(passPos).toString();
             if(tf_id == id && tf_ps == pass){
-                Search* s = new Search();
-                s->show();
+                ReaderBord* r = new ReaderBord(id,name,this);
+                r->show();
                 this->hide();
                 return;
             }
