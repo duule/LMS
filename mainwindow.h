@@ -6,6 +6,7 @@
 #include <QSqlRecord>
 #include <QMessageBox>
 #include "readerbord.h"
+#include "managerbord.h"
 
 namespace Ui {
 class MainWindow;
