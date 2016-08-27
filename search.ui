@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>1148</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QLineEdit" name="tf_author">
    <property name="geometry">
     <rect>
-     <x>412</x>
-     <y>20</y>
-     <width>71</width>
+     <x>482</x>
+     <y>30</y>
+     <width>51</width>
      <height>21</height>
     </rect>
    </property>
@@ -26,9 +26,9 @@
   <widget class="QLineEdit" name="tf_name">
    <property name="geometry">
     <rect>
-     <x>222</x>
-     <y>20</y>
-     <width>141</width>
+     <x>312</x>
+     <y>30</y>
+     <width>111</width>
      <height>21</height>
     </rect>
    </property>
@@ -36,9 +36,9 @@
   <widget class="QLineEdit" name="tf_id">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>20</y>
-     <width>113</width>
+     <x>180</x>
+     <y>30</y>
+     <width>81</width>
      <height>21</height>
     </rect>
    </property>
@@ -46,8 +46,8 @@
   <widget class="QLineEdit" name="tf_isbn">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>60</y>
+     <x>600</x>
+     <y>30</y>
      <width>113</width>
      <height>21</height>
     </rect>
@@ -56,9 +56,9 @@
   <widget class="QLineEdit" name="tf_press">
    <property name="geometry">
     <rect>
-     <x>222</x>
-     <y>60</y>
-     <width>141</width>
+     <x>790</x>
+     <y>30</y>
+     <width>121</width>
      <height>21</height>
     </rect>
    </property>
@@ -66,9 +66,9 @@
   <widget class="QLineEdit" name="tf_edition">
    <property name="geometry">
     <rect>
-     <x>412</x>
-     <y>60</y>
-     <width>71</width>
+     <x>970</x>
+     <y>30</y>
+     <width>41</width>
      <height>21</height>
     </rect>
    </property>
@@ -76,8 +76,8 @@
   <widget class="QPushButton" name="btn_search">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>60</y>
+     <x>1030</x>
+     <y>30</y>
      <width>111</width>
      <height>32</height>
     </rect>
@@ -89,8 +89,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>20</y>
+     <x>140</x>
+     <y>30</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -102,8 +102,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>20</y>
+     <x>270</x>
+     <y>30</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -115,8 +115,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>20</y>
+     <x>440</x>
+     <y>30</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -128,8 +128,8 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>60</y>
+     <x>550</x>
+     <y>30</y>
      <width>41</width>
      <height>16</height>
     </rect>
@@ -141,8 +141,8 @@
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>60</y>
+     <x>930</x>
+     <y>30</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -154,8 +154,8 @@
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>60</y>
+     <x>730</x>
+     <y>30</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -167,8 +167,8 @@
   <widget class="QComboBox" name="cb_ztid">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>20</y>
+     <x>10</x>
+     <y>30</y>
      <width>111</width>
      <height>26</height>
     </rect>
@@ -178,9 +178,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>100</y>
-     <width>621</width>
-     <height>371</height>
+     <y>70</y>
+     <width>1111</width>
+     <height>561</height>
     </rect>
    </property>
   </widget>

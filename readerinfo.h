@@ -5,36 +5,22 @@
 
 class ReaderInfo
 {
-public:
-    enum ReaderType{
-        Undergraduate,
-        Graduate,
-        Teacher
-    };
-    enum Departments{
-        计算机学院,
-        后勤保障部,
-        数学科学学院,
-        教务处,
-        经济管理学院
-    };
-
 private:
     std::string id;
     std::string name;
-    ReaderInfo::Departments department;
-    ReaderInfo::ReaderType type;
+    std::string department;
+    std::string type;
 public:
-    ReaderInfo(std::string id, std::string name, ReaderInfo::Departments department, ReaderInfo::ReaderType type);
+    ReaderInfo(std::string id, std::string name, std::string department, std::string type);
 
     std::string getId();
     void setId(std::string id);
     std::string getName();
     void setName(std::string name);
-    ReaderInfo::Departments getDepartment();
-    void setDepartment(ReaderInfo::Departments department);
-    ReaderInfo::ReaderType getType();
-    void setType(ReaderInfo::ReaderType type);
+    std::string getDepartment();
+    void setDepartment(std::string department);
+    std::string getType();
+    void setType(std::string type);
 
     void display();
 };

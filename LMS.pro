@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     readerbord.cpp \
     readerinfobord.cpp \
     changepasswordbord.cpp \
-    borrowbord.cpp
+    borrowbord.cpp \
+    unborrowbord.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
@@ -34,11 +35,13 @@ HEADERS  += mainwindow.h \
     readerbord.h \
     readerinfobord.h \
     changepasswordbord.h \
-    borrowbord.h
+    borrowbord.h \
+    unborrowbord.h
 
 FORMS    += mainwindow.ui \
     search.ui \
     readerbord.ui \
     readerinfobord.ui \
     changepasswordbord.ui \
-    borrowbord.ui
+    borrowbord.ui \
+    unborrowbord.ui

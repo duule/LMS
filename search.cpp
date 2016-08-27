@@ -38,7 +38,7 @@ void Search::searchButtonOnClicked(){
 
 
     QString sql = "SELECT * FROM books ";
-    if((id == NULL || id == "" )&&(name == NULL || name == "" )&&(author == NULL || author == "" )&&(press == NULL || press == "" )&&(isbn == NULL || isbn == "" )&&(edition == NULL || edition == "" )){
+    if((id == NULL || id == "" )&&(name == NULL || name == "" )&&(author == NULL || author == "" )&&(press == NULL || press == "" )&&(isbn == NULL || isbn == "" )&&(edition == NULL || edition == "" )&&(ztid == "  <请选择>")){
         sql += ";";
     }
     else{

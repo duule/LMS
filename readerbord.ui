@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>304</width>
-    <height>508</height>
+    <height>534</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
      <rect>
       <x>0</x>
       <y>110</y>
-      <width>301</width>
+      <width>261</width>
       <height>16</height>
      </rect>
     </property>
@@ -197,6 +197,19 @@
     </property>
     <property name="text">
      <string>目前还可以借阅数量：</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_logout">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>100</y>
+      <width>51</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>注销</string>
     </property>
    </widget>
   </widget>

@@ -10,6 +10,7 @@
 #include "search.h"
 #include "readerinfobord.h"
 #include "borrowbord.h"
+#include "unborrowbord.h"
 
 namespace Ui {
 class ReaderBord;
@@ -30,11 +31,13 @@ private:
     QString readername;
     QMainWindow* mainwindow;
     BorrowBord* bb;
+    UnBorrowBord* ub;
 private slots:
     void searchButtonOnClicked();
     void myInfoButtonOnClicked();
     void borrowButtonOnClicked();
     void unborrowButtonOnClicked();
+    void logoutButtonOnClicked();
 };
 
 #endif // READERBORD_H

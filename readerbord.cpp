@@ -11,11 +11,13 @@ ReaderBord::ReaderBord(QString id, QString name, QMainWindow* mainwindow, QWidge
     this->mainwindow = mainwindow;
     search = new Search();
     bb = new BorrowBord(this,this->readerid);
+    ub = new UnBorrowBord(this,this->readerid);
     init();
     connect(ui->btn_search,SIGNAL(clicked(bool)),this,SLOT(searchButtonOnClicked()));
     connect(ui->btn_myInfo,SIGNAL(clicked(bool)),this,SLOT(myInfoButtonOnClicked()));
     connect(ui->btn_borrow,SIGNAL(clicked(bool)),this,SLOT(borrowButtonOnClicked()));
     connect(ui->btn_unborrow,SIGNAL(clicked(bool)),this,SLOT(unborrowButtonOnClicked()));
+    connect(ui->btn_logout,SIGNAL(clicked(bool)),this,SLOT(logoutButtonOnClicked()));
 }
 void ReaderBord::init(){
     ui->lb_wealcom->setText("你好，" + this->readername);
@@ -66,7 +68,20 @@ void ReaderBord::borrowButtonOnClicked(){
     bb->show();
 }
 void ReaderBord::unborrowButtonOnClicked(){
+    ub->show();
+}
+void ReaderBord::logoutButtonOnClicked(){
+    QMessageBox qbox;
+    qbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    qbox.setDefaultButton(QMessageBox::Yes);
+    qbox.setText("确定注销？");
+    int ret = qbox.exec();
+//    QMessageBox::question(NULL,"提示","确定注销？",QMessageBox::Yes | QMessageBox::No);
 
+    if(ret == QMessageBox::Yes){
+        this->mainwindow->show();
+        this->close();
+    }
 }
 
 ReaderBord::~ReaderBord()
