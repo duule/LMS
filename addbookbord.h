@@ -2,6 +2,11 @@
 #define ADDBOOKBORD_H
 
 #include <QWidget>
+#include <QDebug>
+#include <QSqlRecord>
+#include <QSqlQuery>
+#include <QMessageBox>
+#include <QPalette>
 
 namespace Ui {
 class AddBookBord;
@@ -17,9 +22,16 @@ public:
 
 private:
     Ui::AddBookBord *ui;
+    void init();
 private slots:
     void addButtonOnClicked();
     void cancelButtonOnClicked();
+
+
+    void idEditFinished();
+    void nameEditFinished();
+    void authorEditFinished();
+    void isbnEditFinished();
 };
 
 #endif // ADDBOOKBORD_H
