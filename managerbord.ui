@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_book">
     <property name="contextMenuPolicy">
@@ -32,16 +32,6 @@
     <attribute name="title">
      <string>书籍</string>
     </attribute>
-    <widget class="QListView" name="lw_books">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>40</y>
-       <width>601</width>
-       <height>401</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="btn_addBook">
      <property name="geometry">
       <rect>
@@ -94,18 +84,28 @@
       <string>馆内可借阅书籍：</string>
      </property>
     </widget>
+    <widget class="QTableView" name="tv_books">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>40</y>
+       <width>601</width>
+       <height>401</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_reader">
     <attribute name="title">
      <string>读者</string>
     </attribute>
-    <widget class="QListView" name="lw_readers">
+    <widget class="QTableView" name="tv_reader">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>110</y>
-       <width>601</width>
-       <height>331</height>
+       <y>40</y>
+       <width>611</width>
+       <height>411</height>
       </rect>
      </property>
     </widget>

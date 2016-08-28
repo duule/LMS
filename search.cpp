@@ -106,10 +106,13 @@ void Search::searchButtonOnClicked(){
     model->setHeaderData(6, Qt::Horizontal, "ISBN");
     model->setHeaderData(7, Qt::Horizontal, "版次");
     model->setHeaderData(8, Qt::Horizontal, "价格");
+    model->setHeaderData(9, Qt::Horizontal, "总量");
+    model->setHeaderData(10,Qt::Horizontal, "可借");
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setEditTriggers (QAbstractItemView::NoEditTriggers );
     ui->tableView->setModel(model);
+    ui->lb_count->setText(QString("%1").arg(ui->tableView->model()->rowCount()));
 }
 
 Search::~Search()
