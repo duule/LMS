@@ -118,7 +118,7 @@
     </font>
    </property>
    <property name="text">
-    <string>书籍信息</string>
+    <string>书籍</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

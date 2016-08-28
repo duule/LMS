@@ -10,7 +10,7 @@ AddBookBord::AddBookBord(ManagerBord* mb,QString type, QString id , QWidget *par
     this->type = type;
     this->id = id;
     init();
-//    ztids = {"无分类","TB  一般工业技术","TD  矿业工程","TE  石油、天然气工业","TF  金工业","TG  金属学","TH  机械","TJ  武器工业","TK  动力工业","TL  原子能技术","TM  电工技术","TN  无线电电子学、通信技术","TP  自动化技术、计算技术"};
+
     connect(ui->btn_add,SIGNAL(clicked(bool)),this,SLOT(addButtonOnClicked()));
     connect(ui->btn_cancel,SIGNAL(clicked(bool)),this,SLOT(cancelButtonOnClicked()));
     connect(ui->tf_id,SIGNAL(editingFinished()),this,SLOT(idEditFinished()));
@@ -109,7 +109,7 @@ void AddBookBord::addButtonOnClicked(){
     bool ret = query.exec(sql);
     if(ret){
         QMessageBox::information(NULL,"提示",success);
-        this->mb->init();
+        this->mb->booksInit();
     }
     else{
         QMessageBox::information(NULL,"提示",failed);

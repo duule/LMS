@@ -14,6 +14,9 @@
    <string>Form</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -21,6 +24,11 @@
      <width>611</width>
      <height>471</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <stylestrategy>PreferDefault</stylestrategy>
+    </font>
    </property>
    <property name="currentIndex">
     <number>1</number>
@@ -99,14 +107,92 @@
     <attribute name="title">
      <string>读者</string>
     </attribute>
-    <widget class="QTableView" name="tv_reader">
+    <widget class="QTableView" name="tv_readers">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>40</y>
        <width>611</width>
-       <height>411</height>
+       <height>401</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_addReader">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>10</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>＋</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_delReader">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>10</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>－</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_editReader">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>10</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>编辑</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_verifyReader">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>10</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>审核</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>读者列表</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_showBooks">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>10</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>查询已借书籍</string>
      </property>
     </widget>
    </widget>

@@ -16,7 +16,8 @@ class ManagerBord : public QWidget
 
 public:
     explicit ManagerBord(QMainWindow* mainwindow, QWidget *parent = 0);
-    void init();
+    void booksInit();
+    void readersInit();
     ~ManagerBord();
 
 private:

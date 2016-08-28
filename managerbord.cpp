@@ -9,7 +9,8 @@ ManagerBord::ManagerBord(QMainWindow* mainwindow, QWidget *parent) :
     this->mainwindow = mainwindow;
     this->cp = new ChangePasswordBord("admin");
 
-    init();
+    booksInit();
+    readersInit();
 
     connect(ui->btn_changePassword,SIGNAL(clicked(bool)),this,SLOT(changePasswordButtonOnClicked()));
     connect(ui->btn_logout,SIGNAL(clicked(bool)),this,SLOT(logoutButtonOnClicked()));
@@ -18,7 +19,7 @@ ManagerBord::ManagerBord(QMainWindow* mainwindow, QWidget *parent) :
     connect(ui->btn_editBook,SIGNAL(clicked(bool)),this,SLOT(editBookButtonOnClicked()));
 }
 
-void ManagerBord::init(){
+void ManagerBord::booksInit(){
     QString sql = "SELECT * FROM books ;";
     QSqlQueryModel *model = new QSqlQueryModel();
     model->setQuery(sql);
@@ -38,6 +39,23 @@ void ManagerBord::init(){
     ui->tv_books->setEditTriggers (QAbstractItemView::NoEditTriggers );
     ui->tv_books->setModel(model);
 }
+void ManagerBord::readersInit(){
+    QString sql = "SELECT * FROM readers ;";
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery(sql);
+    model->setHeaderData(0, Qt::Horizontal, "ID");
+    model->setHeaderData(1, Qt::Horizontal, "姓名");
+    model->setHeaderData(2, Qt::Horizontal, "部门");
+    model->setHeaderData(3, Qt::Horizontal, "所属单位");
+    model->setHeaderData(4, Qt::Horizontal, "密码");
+    model->setHeaderData(5, Qt::Horizontal, "可借阅量");
+    model->setHeaderData(6, Qt::Horizontal, "已借阅量");
+    ui->tv_readers->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tv_readers->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tv_readers->setEditTriggers (QAbstractItemView::NoEditTriggers );
+    ui->tv_readers->setModel(model);
+    ui->tv_readers->setColumnHidden(4,true);
+}
 
 void ManagerBord::changePasswordButtonOnClicked(){
     this->cp->show();
@@ -55,6 +73,11 @@ void ManagerBord::logoutButtonOnClicked(){
         this->close();
     }
 }
+
+
+
+
+//books
 void ManagerBord::addBookButtonOnClicked(){
     AddBookBord* add = new AddBookBord(this,"add");
     add->show();
@@ -78,7 +101,7 @@ void ManagerBord::delBookButtonOnClicked(){
         bool ret = query.exec(sql);
         if(ret){
             QMessageBox::information(NULL,"提示","删除成功");
-            this->init();
+            this->booksInit();
 
         }
         else {
@@ -94,6 +117,16 @@ void ManagerBord::editBookButtonOnClicked(){
     AddBookBord* add = new AddBookBord(this,"edit",id);
     add->show();
 }
+
+
+
+//readers
+
+
+
+
+
+
 
 ManagerBord::~ManagerBord()
 {
