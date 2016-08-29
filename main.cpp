@@ -15,8 +15,6 @@ int main(int argc, char *argv[])
 
     //-------------test---------------//
 
-    qDebug()<<Tools::getDistanceOfDate(QDate(2014,8,12),QDate(2016,8,12));
-
     //-------------test---------------//
 
 

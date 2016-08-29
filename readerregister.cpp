@@ -54,11 +54,11 @@ void ReaderRegister::registerButtonOnClicked(){
     QString passwordRepet = ui->tf_passwordRepet->text();
     QString department = ui->tf_department->text();
     QString type = ui->cb_type->currentText();
-    int maxBorrow,hasBorrow = 0;
-    if(type == types[0])maxBorrow = 4;
-    else if(type == types[1])maxBorrow = 6;
-    else if(type == types[2])maxBorrow = 6;
-    else if(type == types[3])maxBorrow = 8;
+    int maxBorrow=0,hasBorrow = 0,daylong;
+    if(type == types[0])maxBorrow = 4,daylong=30;
+    else if(type == types[1])maxBorrow = 6,daylong=60;
+    else if(type == types[2])maxBorrow = 6,daylong=30;
+    else if(type == types[3])maxBorrow = 8,daylong=60;
 
     if(id.length() != 10 ){ui->lb_idwarn->show();return;}
     else if(name == NULL || name == "" ){ui->lb_namewarn->show();return;}
@@ -66,7 +66,7 @@ void ReaderRegister::registerButtonOnClicked(){
     else if(password == NULL || password == ""){ui->lb_passwarn->show();return;}
     else if(password != passwordRepet){ui->lb_reptwarn->show();return;}
 
-    QString sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow,verify) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + password + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ",\'未审核\');";
+    QString sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow,verify,daylong) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + password + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ",\'未审核\'," + daylong + ");";
     qDebug()<<sql;
     QSqlQuery query;
     bool ret = query.exec(sql);

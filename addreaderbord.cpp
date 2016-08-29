@@ -63,11 +63,11 @@ void AddReaderBord::addButtonOnClicked(){
     QString name = ui->tf_name->text();
     QString department = ui->tf_department->text();
     QString type = ui->cb_type->currentText();
-    int maxBorrow,hasBorrow = 0;
-    if(type == types[0])maxBorrow = 4;
-    else if(type == types[1])maxBorrow = 6;
-    else if(type == types[2])maxBorrow = 6;
-    else if(type == types[3])maxBorrow = 8;
+    int maxBorrow=0,hasBorrow = 0,daylong;
+    if(type == types[0])maxBorrow = 4,daylong=30;
+    else if(type == types[1])maxBorrow = 6,daylong=60;
+    else if(type == types[2])maxBorrow = 6,daylong=30;
+    else if(type == types[3])maxBorrow = 8,daylong=60;
 
     if(id.length() != 10 ){ui->lb_idwarn->show();return;}
     else if(name == NULL || name == "" ){ui->lb_namewarn->show();return;}
@@ -75,12 +75,12 @@ void AddReaderBord::addButtonOnClicked(){
 
     QString sql,success,failed;
     if(this->type == "add") {
-        sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow,verify) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + id + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ",\'已审核\');";
+        sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow,verify,daylong) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + id + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ",\'已审核\'," + daylong + ");";
         success = "添加成功！";
         failed = "添加失败！";
     }
     else if(this->type == "edit"){
-        sql = "UPDATE readers SET `name` = \'" + name + "\',department = \'" + department + "\',type = \'" + type + "\',maxBorrow = " + QString("%1").arg(maxBorrow) +  ",verify=\'已审核\' WHERE id = \'"+ id +"\' ;";
+        sql = "UPDATE readers SET `name` = \'" + name + "\',department = \'" + department + "\',type = \'" + type + "\',maxBorrow = " + QString("%1").arg(maxBorrow) +  ",verify=\'已审核\' , daylong = " + daylong + " WHERE id = \'"+ id +"\' ;";
         success = "更改成功！";
         failed = "更改失败！";
     }

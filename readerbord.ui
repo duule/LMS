@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListView" name="listView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>160</y>
-      <width>281</width>
-      <height>121</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="lb_wealcom">
     <property name="geometry">
      <rect>
@@ -223,6 +213,16 @@
     </property>
     <property name="text">
      <string>预约</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>281</width>
+      <height>121</height>
+     </rect>
     </property>
    </widget>
   </widget>

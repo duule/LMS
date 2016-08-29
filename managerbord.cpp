@@ -57,6 +57,8 @@ void ManagerBord::readersInit(){
     model->setHeaderData(4, Qt::Horizontal, "密码");
     model->setHeaderData(5, Qt::Horizontal, "可借阅量");
     model->setHeaderData(6, Qt::Horizontal, "已借阅量");
+    model->setHeaderData(7, Qt::Horizontal, "审核状态");
+    model->setHeaderData(8, Qt::Horizontal, "可借阅天数");
     ui->tv_readers->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tv_readers->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tv_readers->setEditTriggers (QAbstractItemView::NoEditTriggers );
@@ -77,8 +79,6 @@ void ManagerBord::logoutButtonOnClicked(){
     qbox.setDefaultButton(QMessageBox::Yes);
     qbox.setText("确定注销？");
     int ret = qbox.exec();
-//    QMessageBox::question(NULL,"提示","确定注销？",QMessageBox::Yes | QMessageBox::No);
-
     if(ret == QMessageBox::Yes){
         this->mainwindow->show();
         this->close();

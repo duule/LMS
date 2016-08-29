@@ -44,6 +44,41 @@ public:
             return d1+d2+d3;
         }
     }
+    static bool largerYearIsInLeft(QDate a,QDate b){
+        QString dateA = a.toString("yyyy-MM-dd");
+        QString dateB = b.toString("yyyy-MM-dd");
+        int year_A = dateA.left(4).toInt();
+        int year_B = dateB.left(4).toInt();
+        int month_A = dateA.mid(5,2).toInt();
+        int month_B = dateB.mid(5,2).toInt();
+        int day_A = dateA.right(2).toInt();
+        int day_B = dateB.right(2).toInt();
+        if(year_A == year_B && month_A == month_B)return day_A>day_B;
+        else if(year_A == year_B) return month_A>month_B;
+        else return year_A > year_B;
+    }
+    static QDate addDaysOnDate(QDate a,int days){
+        int DAY[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+        QString date = a.toString("yyyy-MM-dd");
+        int year = date.left(4).toInt();
+        int month = date.mid(5,2).toInt();
+        int day = date.right(2).toInt();
+        day += days;
+        int x = DAY[month-1];
+        while(day> x ){
+            day -= x;
+            month += 1;
+            int temp = month%12;
+            if(temp == 0) temp =12;
+            x = DAY[temp-1];
+        }
+        while(month>12){
+            month -= 12;
+            year++;
+        }
+        return QDate(year,month,day);
+    }
+
 private:
     static int getTotalDaysInYear(int year,int month, int day){
         int DAY[12] = {31,28,31,30,31,30,31,31,30,31,30,31};

@@ -6,6 +6,8 @@
 #include <QSqlRecord>
 #include <QMessageBox>
 #include <QDebug>
+#include <QDate>
+#include "tools.h"
 
 class ReaderBord;
 namespace Ui {
