@@ -10,7 +10,7 @@ AddReaderBord::AddReaderBord(ManagerBord* mb,QString type, QString id , QWidget 
     this->type = type;
     this->id = id;
     init();
-
+    qDebug()<<"s"<<endl;
     connect(ui->btn_add,SIGNAL(clicked(bool)),this,SLOT(addButtonOnClicked()));
     connect(ui->btn_cancel,SIGNAL(clicked(bool)),this,SLOT(cancelButtonOnClicked()));
     connect(ui->tf_id,SIGNAL(editingFinished()),this,SLOT(idEditFinished()));
@@ -20,7 +20,7 @@ AddReaderBord::AddReaderBord(ManagerBord* mb,QString type, QString id , QWidget 
 
 
 void AddReaderBord::init(){
-    for(int i = 0; i<13; i++){
+    for(int i = 0; i<4; i++){
         ui->cb_type->addItem(types[i]);
     }
 
@@ -34,7 +34,6 @@ void AddReaderBord::init(){
     ui->lb_namewarn->hide();
     ui->lb_idwarn->hide();
     ui->lb_departmentwarn->hide();
-
 
     if(type == "edit"){
         QSqlQuery query;
@@ -55,6 +54,7 @@ void AddReaderBord::init(){
             ui->tf_department->setText(department);
             ui->cb_type->setCurrentIndex(currentIndex);
         }
+        ui->tf_id->setEnabled(false);
         ui->btn_add->setText("修改");
     }
 }
@@ -71,15 +71,16 @@ void AddReaderBord::addButtonOnClicked(){
     else if(type == types[3])maxBorrow = 8;
     QString sql,success,failed;
     if(this->type == "add") {
-//        sql = "INSERT INTO readers(id,ztid,`name`,author,press,date,isbn,edition,price,total,`left`) VALUES(\'" + id + "\',\'" + ztid + "\',\'" + name + "\',\'" + author + "\',\'" + press + "\',\'" + date + "\',\'" + isbn + "\'," + QString("%1").arg(edition) + "," + QString("%1").arg(price) + "," + QString("%1").arg(total) + "," + QString("%1").arg(total) + ");";
+        sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + id + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ");";
         success = "添加成功！";
         failed = "添加失败！";
     }
     else if(this->type == "edit"){
-//        sql = "UPDATE readers SET ztid = \'" + ztid + "\',`name` = \'" + name + "\',author = \'" + author + "\',press = \'" + press + "\',date = \'" + date + "\',isbn = \'" + isbn + "\',edition = " + QString("%1").arg(edition) + ",price = " + QString("%1").arg(price) + ",total = " + QString("%1").arg(total) + ",`left` = " + QString("%1").arg(total) + " WHERE id = \'"+ id +"\' ;";
+        sql = "UPDATE readers SET `name` = \'" + name + "\',department = \'" + department + "\',type = \'" + type + "\',maxBorrow = " + QString("%1").arg(maxBorrow) +  " WHERE id = \'"+ id +"\' ;";
         success = "更改成功！";
         failed = "更改失败！";
     }
+    qDebug()<<sql;
     QSqlQuery query;
     bool ret = query.exec(sql);
     if(ret){
@@ -98,7 +99,7 @@ void AddReaderBord::cancelButtonOnClicked(){
 
 void AddReaderBord::idEditFinished(){
     QString id = ui->tf_id->text();
-    if(id.length() != 5 )ui->lb_idwarn->show();
+    if(id.length() != 10 )ui->lb_idwarn->show();
     else ui->lb_idwarn->hide();
 }
 void AddReaderBord::nameEditFinished(){

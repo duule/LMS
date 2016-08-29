@@ -77,6 +77,7 @@ void AddBookBord::init(){
             ui->dsp_price->setValue(price);
             ui->sb_total->setValue(total);
         }
+        ui->tf_id->setEnabled(false);
         ui->btn_add->setText("修改");
     }
 }

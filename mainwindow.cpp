@@ -17,18 +17,18 @@ void MainWindow::loginButtonOnClicked(){
     QString tf_id = ui->tf_id->text();
     QString tf_ps = ui->tf_password->text();
     QSqlQuery query;
-    query.exec("SELECT * FROM readers");
-    while(query.next())
+    query.exec("SELECT * FROM readers WHERE id = \'" + tf_id + "\' ;");
+    if(query.next())
     {
-        int idPos = query.record().indexOf("id");
         int namePos = query.record().indexOf("name");
         int passPos = query.record().indexOf("password");
         int readerTypePos = query.record().indexOf("type");
-        QString id = query.value(idPos).toString();
+        int verifyPos = query.record().indexOf("verify");
         QString name = query.value(namePos).toString();
         QString pass = query.value(passPos).toString();
         QString type = query.value(readerTypePos).toString();
-        if(tf_id == id){
+        QString verify = query.value(verifyPos).toString();
+        if(verify == "已审核"){
             if(tf_ps == pass){
                 if(type == "管理员"){
                     ManagerBord* mb = new ManagerBord(this);
@@ -37,7 +37,7 @@ void MainWindow::loginButtonOnClicked(){
                     return;
                 }
                 else{
-                    ReaderBord* r = new ReaderBord(id,name,this);
+                    ReaderBord* r = new ReaderBord(tf_id,name,this);
                     r->show();
                     this->hide();
                     return;
@@ -47,6 +47,10 @@ void MainWindow::loginButtonOnClicked(){
                 QMessageBox::information(NULL,"提示","密码错误！");
                 return;
             }
+        }
+        else{
+            QMessageBox::information(NULL,"提示","账号未审核，请耐心等待管理员审核。");
+            return;
         }
     }
     QMessageBox::information(NULL,"提示","未找到用户或连接失败！");

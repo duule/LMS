@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include "changepasswordbord.h"
 #include "addbookbord.h"
+#include "addreaderbord.h"
 
 namespace Ui {
 class ManagerBord;
@@ -26,10 +27,17 @@ private:
     ChangePasswordBord* cp;
 private slots:
     void logoutButtonOnClicked();
+    void changePasswordButtonOnClicked();
+
     void addBookButtonOnClicked();
     void delBookButtonOnClicked();
     void editBookButtonOnClicked();
-    void changePasswordButtonOnClicked();
+
+    void addReaderButtonOnClicked();
+    void delReaderButtonOnClicked();
+    void editReaderButtonOnClicked();
+    void verifyButtonOnClicked();
+    void showReader_sBookButtonOnClicked();
 };
 
 #endif // MANAGERBORD_H
