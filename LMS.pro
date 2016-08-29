@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     managerbord.cpp \
     addbookbord.cpp \
     addreaderbord.cpp \
-    readerregister.cpp
+    readerregister.cpp \
+    tools.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
@@ -44,7 +45,8 @@ HEADERS  += mainwindow.h \
     managerbord.h \
     addbookbord.h \
     addreaderbord.h \
-    readerregister.h
+    readerregister.h \
+    tools.h
 
 FORMS    += mainwindow.ui \
     search.ui \
