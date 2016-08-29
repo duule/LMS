@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include "readerbord.h"
 #include "managerbord.h"
+#include "readerregister.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,8 +23,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    ReaderRegister* rr;
 private slots:
     void loginButtonOnClicked();
+    void registerButtonOnClicked();
 
 };
 #endif // MAINWINDOW_H

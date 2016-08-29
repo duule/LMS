@@ -10,7 +10,6 @@ AddReaderBord::AddReaderBord(ManagerBord* mb,QString type, QString id , QWidget 
     this->type = type;
     this->id = id;
     init();
-    qDebug()<<"s"<<endl;
     connect(ui->btn_add,SIGNAL(clicked(bool)),this,SLOT(addButtonOnClicked()));
     connect(ui->btn_cancel,SIGNAL(clicked(bool)),this,SLOT(cancelButtonOnClicked()));
     connect(ui->tf_id,SIGNAL(editingFinished()),this,SLOT(idEditFinished()));
@@ -104,8 +103,21 @@ void AddReaderBord::cancelButtonOnClicked(){
 
 void AddReaderBord::idEditFinished(){
     QString id = ui->tf_id->text();
-    if(id.length() != 10 )ui->lb_idwarn->show();
-    else ui->lb_idwarn->hide();
+    if(id.length() != 10 ){
+        ui->lb_idwarn->setText("编号长度为10");
+        ui->lb_idwarn->show();
+        return;
+    }
+    else {
+        QSqlQuery query;
+        query.exec("SELECT * FROM readers WHERE id = \'" + id + "\' ;");
+        if(query.next()){
+            ui->lb_idwarn->setText("该编号已存在。");
+            ui->lb_idwarn->show();
+            return;
+        }
+        ui->lb_idwarn->hide();
+    }
 }
 void AddReaderBord::nameEditFinished(){
     QString name = ui->tf_name->text();

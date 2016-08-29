@@ -6,7 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->rr = new ReaderRegister();
     connect(ui->btn_login,SIGNAL(clicked(bool)),this,SLOT(loginButtonOnClicked()));
+    connect(ui->btn_register,SIGNAL(clicked(bool)),this,SLOT(registerButtonOnClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -54,4 +56,8 @@ void MainWindow::loginButtonOnClicked(){
         }
     }
     QMessageBox::information(NULL,"提示","未找到用户或连接失败！");
+}
+void MainWindow::registerButtonOnClicked(){
+    this->rr->clearForm();
+    this->rr->show();
 }

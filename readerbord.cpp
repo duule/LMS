@@ -9,7 +9,7 @@ ReaderBord::ReaderBord(QString id, QString name, QMainWindow* mainwindow, QWidge
     this->readerid = id;
     this->readername = name;
     this->mainwindow = mainwindow;
-    search = new Search();
+    search = new Search(id,this);
     bb = new BorrowBord(this,this->readerid);
     ub = new UnBorrowBord(this,this->readerid);
     init();
