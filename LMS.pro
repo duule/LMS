@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     unborrowbord.cpp \
     managerbord.cpp \
     addbookbord.cpp \
-    addreaderbord.cpp
+    addreaderbord.cpp \
+    readerregister.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     unborrowbord.h \
     managerbord.h \
     addbookbord.h \
-    addreaderbord.h
+    addreaderbord.h \
+    readerregister.h
 
 FORMS    += mainwindow.ui \
     search.ui \
@@ -53,4 +55,5 @@ FORMS    += mainwindow.ui \
     unborrowbord.ui \
     managerbord.ui \
     addbookbord.ui \
-    addreaderbord.ui
+    addreaderbord.ui \
+    readerregister.ui

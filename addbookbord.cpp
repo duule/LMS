@@ -95,6 +95,12 @@ void AddBookBord::addButtonOnClicked(){
     int edition = ui->sb_edition->value();
     double price = ui->dsp_price->value();
     int total = ui->sb_total->value();
+
+    if(id.length() != 5 ){ui->lb_idwarn->show();return;}
+    else if(name == NULL || name == "" ){ui->lb_namewarn->show();return;}
+    else if(author == NULL || author == "" ){ui->lb_authorwarn->show();return;}
+    else if((isbn.length() == 10 || isbn.length() == 13 )==false){ui->lb_isbnwarn->show();return;}
+
     QString sql,success,failed;
     if(type == "add") {
         sql = "INSERT INTO books(id,ztid,`name`,author,press,date,isbn,edition,price,total,`left`) VALUES(\'" + id + "\',\'" + ztid + "\',\'" + name + "\',\'" + author + "\',\'" + press + "\',\'" + date + "\',\'" + isbn + "\'," + QString("%1").arg(edition) + "," + QString("%1").arg(price) + "," + QString("%1").arg(total) + "," + QString("%1").arg(total) + ");";

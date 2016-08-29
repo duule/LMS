@@ -146,7 +146,7 @@ void ManagerBord::delReaderButtonOnClicked(){
         bool ret = query.exec(sql);
         if(ret){
             QMessageBox::information(NULL,"提示","删除成功");
-            this->booksInit();
+            this->readersInit();
 
         }
         else {
