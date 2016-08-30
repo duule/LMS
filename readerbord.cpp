@@ -12,11 +12,13 @@ ReaderBord::ReaderBord(QString id, QString name, QMainWindow* mainwindow, QWidge
     search = new Search(id,this);
     bb = new BorrowBord(this,this->readerid);
     ub = new UnBorrowBord(this,this->readerid);
+    bk = new BookingBord(this,this->readerid);
     init();
     connect(ui->btn_search,SIGNAL(clicked(bool)),this,SLOT(searchButtonOnClicked()));
     connect(ui->btn_myInfo,SIGNAL(clicked(bool)),this,SLOT(myInfoButtonOnClicked()));
     connect(ui->btn_borrow,SIGNAL(clicked(bool)),this,SLOT(borrowButtonOnClicked()));
     connect(ui->btn_unborrow,SIGNAL(clicked(bool)),this,SLOT(unborrowButtonOnClicked()));
+    connect(ui->btn_booking,SIGNAL(clicked(bool)),this,SLOT(bookingButtonOnClicked()));
     connect(ui->btn_logout,SIGNAL(clicked(bool)),this,SLOT(logoutButtonOnClicked()));
 }
 void ReaderBord::init(){
@@ -102,6 +104,10 @@ void ReaderBord::borrowButtonOnClicked(){
 void ReaderBord::unborrowButtonOnClicked(){
     ub->show();
 }
+void ReaderBord::bookingButtonOnClicked(){
+    bk->show();
+}
+
 void ReaderBord::logoutButtonOnClicked(){
     QMessageBox qbox;
     qbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);

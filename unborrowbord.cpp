@@ -34,6 +34,15 @@ void UnBorrowBord::buttonBoxAcceptOnClicked(){
                 query.exec("UPDATE readers SET `hasBorrow` = " + QString("%1").arg(newHasBorrow) + " WHERE id = \'" + this->readerId + "\' ;");
                 query.exec("DELETE FROM borrow WHERE readerid = \'" + this->readerId + "\' AND bookid = \'" + borrowBookId + "\' LIMIT 1;");
                 QMessageBox::information(NULL,"提示","还书成功");
+                query.exec("UPDATE booking SET bookingStartDate = \'" + QDate::currentDate().toString("yyyy-MM-dd") + "\' WHERE bookid = \'" + borrowBookId + "\' ;");
+                QSqlQuery query2;
+                query.exec("SELECT * FROM booking WHERE bookid =\'" + borrowBookId + "\';");
+                if(query.next()){
+                    QString bookingReaderId = query.value(query.record().indexOf("readerid")).toString();
+                    QString bookingStartDate = QDate::currentDate().toString("yyyy-MM-dd");
+                    QString bookingEndDate = Tools::addDaysOnDate(QDate::currentDate(),15).toString("yyyy-MM-dd");
+                    query2.exec("UPDATE booking SET bookingStartDate = \'" + bookingStartDate + "\' , bookingEndDate = \'" + bookingEndDate + "\' WHEWE readerid = \'" + bookingReaderId + "\' AND bookid = \'" + borrowBookId + "\' ; " );
+                }
                 rb->init();
                 return;
             }
