@@ -154,8 +154,10 @@ void Search::borrowButtonOnClicked(){
                 }
             }
             if(left > 0){
-                query.exec("SELECT * FROM booking WHERE readerid = \'" + this->readerId + "\' AND bookid = \'" + borrowBookId + "\' ;");
-                if(query.next()||booking<left){
+                query.exec("SELECT * FROM booking WHERE bookid = \'" + borrowBookId + "\' ;");
+                bool booked = false;
+                if(query.next() && query.value(query.record().indexOf("readerid")) == readerId )booked = true;
+                if(booked||booking<left){
                     if(hasBorrow < canBorrow){
                         int newLeft = left - 1;
                         int newHasBorrow = hasBorrow + 1;
@@ -167,8 +169,10 @@ void Search::borrowButtonOnClicked(){
                             booking--;
                             query.exec("UPDATE books SET `left` = " + QString("%1").arg(newLeft) + " WHERE id = \'" + borrowBookId + "\' ;");
                             query.exec("UPDATE readers SET `hasBorrow` = " + QString("%1").arg(newHasBorrow) + " WHERE id = \'" + this->readerId + "\' ;");
-                            if(query.exec("DELETE FROM booking WHERE readerid = \'" + this->readerId + "\' AND bookid = \'" + borrowBookId + "\' ;"))
+                            if(booked){
+                                query.exec("DELETE FROM booking WHERE readerid = \'" + this->readerId + "\' AND bookid = \'" + borrowBookId + "\' ;");
                                 query.exec("UPDATE books SET booking = " +  QString("%1").arg(booking) + " WHERE id = \'" + borrowBookId + "\' ; ");
+                            }
                             readerbord->init();
                             return;
                         }
