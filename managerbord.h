@@ -17,6 +17,7 @@ class ManagerBord : public QWidget
 
 public:
     explicit ManagerBord(QMainWindow* mainwindow, QWidget *parent = 0);
+    void init();
     void booksInit();
     void readersInit();
     ~ManagerBord();
@@ -29,10 +30,13 @@ private slots:
     void logoutButtonOnClicked();
     void changePasswordButtonOnClicked();
 
+    void searchBookButtonOnClicked();
     void addBookButtonOnClicked();
     void delBookButtonOnClicked();
     void editBookButtonOnClicked();
+    void showBook_sReadersButtonOnClicked();
 
+    void searchReaderButtonOnClicked();
     void addReaderButtonOnClicked();
     void delReaderButtonOnClicked();
     void editReaderButtonOnClicked();

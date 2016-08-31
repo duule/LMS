@@ -42,6 +42,7 @@ void BookingBord::buttonBoxAcceptOnClicked(){
                 QString sql = "INSERT INTO booking(readerid,bookid,bookingStartDate,bookingEndDate) VALUES(\'" + this->readerId + "\',\'" + bookingBookId + "\',\'" + bookingStartDate + "\',\'" + bookingEndDate + "\')";
                 if(query.exec(sql)){
                     QMessageBox::information(NULL,"提示","预约成功，请在15天之内到图书馆进行借阅");
+                    rb->bookingInit();
                     booking++;
                     QString sql = "UPDATE books SET booking = " +  QString("%1").arg(booking) + " WHERE id = \'" + bookingBookId + "\' ; ";
                     query.exec(sql);

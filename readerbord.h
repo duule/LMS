@@ -25,6 +25,7 @@ public:
     explicit ReaderBord(QString id,QString name, QMainWindow* mainwindow, QWidget *parent = 0);
     ~ReaderBord();
     void init();
+    void bookingInit();
 private:
     Ui::ReaderBord *ui;
     Search* search;
@@ -41,6 +42,7 @@ private slots:
     void unborrowButtonOnClicked();
     void bookingButtonOnClicked();
     void logoutButtonOnClicked();
+    void unbookingButtonOnClicked();
 };
 
 #endif // READERBORD_H

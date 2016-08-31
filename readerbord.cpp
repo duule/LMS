@@ -14,12 +14,14 @@ ReaderBord::ReaderBord(QString id, QString name, QMainWindow* mainwindow, QWidge
     ub = new UnBorrowBord(this,this->readerid);
     bk = new BookingBord(this,this->readerid);
     init();
+    bookingInit();
     connect(ui->btn_search,SIGNAL(clicked(bool)),this,SLOT(searchButtonOnClicked()));
     connect(ui->btn_myInfo,SIGNAL(clicked(bool)),this,SLOT(myInfoButtonOnClicked()));
     connect(ui->btn_borrow,SIGNAL(clicked(bool)),this,SLOT(borrowButtonOnClicked()));
     connect(ui->btn_unborrow,SIGNAL(clicked(bool)),this,SLOT(unborrowButtonOnClicked()));
     connect(ui->btn_booking,SIGNAL(clicked(bool)),this,SLOT(bookingButtonOnClicked()));
     connect(ui->btn_logout,SIGNAL(clicked(bool)),this,SLOT(logoutButtonOnClicked()));
+    connect(ui->btn_unbooking,SIGNAL(clicked(bool)),this,SLOT(unbookingButtonOnClicked()));
 }
 void ReaderBord::init(){
     ui->lb_wealcom->setText("你好，" + this->readername);
@@ -90,6 +92,20 @@ void ReaderBord::init(){
         ui->lb_canBorrow->setText(QString("%1").arg(canBorrow));
     }
 }
+void ReaderBord::bookingInit(){
+    QString sql = "SELECT * FROM booking WHERE readerid = \'" + this->readerid+ "\' ;";
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery(sql);
+    model->setHeaderData(0, Qt::Horizontal, "读者编号");
+    model->setHeaderData(1, Qt::Horizontal, "书籍编号");
+    model->setHeaderData(2, Qt::Horizontal, "预约开始");
+    model->setHeaderData(3, Qt::Horizontal, "预约到期");
+    ui->tv_booking->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tv_booking->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tv_booking->setEditTriggers (QAbstractItemView::NoEditTriggers );
+    ui->tv_booking->setModel(model);
+    ui->tv_booking->setColumnHidden(0,true);
+}
 
 void ReaderBord::searchButtonOnClicked(){
     search->show();
@@ -114,11 +130,42 @@ void ReaderBord::logoutButtonOnClicked(){
     qbox.setDefaultButton(QMessageBox::Yes);
     qbox.setText("确定注销？");
     int ret = qbox.exec();
-//    QMessageBox::question(NULL,"提示","确定注销？",QMessageBox::Yes | QMessageBox::No);
-
     if(ret == QMessageBox::Yes){
         this->mainwindow->show();
         this->close();
+    }
+}
+
+void ReaderBord::unbookingButtonOnClicked(){
+    QModelIndex row = ui->tv_booking->currentIndex();
+    QModelIndex xrow = ui->tv_booking->model()->index(row.row(),1);
+    QVariant data = ui->tv_booking->model()->data(xrow);
+    QString bookingBookId = data.toString();
+    if(bookingBookId == NULL || bookingBookId == ""){
+        QMessageBox::information(NULL,"提示","输入为空！");
+    }
+    else{
+        QSqlQuery query;
+        QString sql = "DELETE FROM booking WHERE readerid = \'" + this->readerid + "\' AND bookid = \'" + bookingBookId + "\' LIMIT 1; ";
+        qDebug()<<sql;
+        QMessageBox qbox;
+        qbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        qbox.setDefaultButton(QMessageBox::Yes);
+        qbox.setText("确定取消借阅？");
+        int ret = qbox.exec();
+        if(ret == QMessageBox::Yes){
+            if(query.exec(sql)){
+                QMessageBox::information(NULL,"提示","取消预约成功！");
+                query.exec("SELECT * FROM books WHERE id = \'" + bookingBookId + "\' ;");
+                query.next();
+                int booking = query.value(query.record().indexOf("booking")).toInt() - 1;
+                query.exec("UPDATE books SET booking = " +  QString("%1").arg(booking) + " WHERE id = \'" + bookingBookId + "\' ; ");
+                bookingInit();
+            }
+            else{
+                QMessageBox::information(NULL,"提示","取消预约失败！");
+            }
+        }
     }
 }
 

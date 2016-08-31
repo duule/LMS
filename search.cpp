@@ -14,6 +14,7 @@ Search::Search(QString readerId,ReaderBord* readerbord, QWidget *parent) :
     searchButtonOnClicked();
     connect(ui->btn_search,SIGNAL(clicked(bool)),this,SLOT(searchButtonOnClicked()));
     connect(ui->btn_borrow,SIGNAL(clicked(bool)),this,SLOT(borrowButtonOnClicked()));
+    connect(ui->btn_booking,SIGNAL(clicked(bool)),this,SLOT(bookingButtonOnClicked()));
 }
 void Search::init(){
     ui->cb_ztid->addItem("  <请选择>");
@@ -98,7 +99,6 @@ void Search::searchButtonOnClicked(){
         }
         sql += ";";
     }
-    qDebug()<<sql;
     QSqlQueryModel *model = new QSqlQueryModel();
     model->setQuery(sql);
     model->setHeaderData(0, Qt::Horizontal, "ID");
@@ -174,6 +174,7 @@ void Search::borrowButtonOnClicked(){
                                 query.exec("UPDATE books SET booking = " +  QString("%1").arg(booking) + " WHERE id = \'" + borrowBookId + "\' ; ");
                             }
                             readerbord->init();
+                            readerbord->bookingInit();
                             return;
                         }
                         else{
@@ -195,6 +196,65 @@ void Search::borrowButtonOnClicked(){
             else{
                 QMessageBox::information(NULL,"提示","书籍可借剩余量不足！");
                 return;
+            }
+        }
+        QMessageBox::information(NULL,"提示","未查询到相应书籍！");
+    }
+}
+void Search::bookingButtonOnClicked(){
+    QModelIndex row = ui->tableView->currentIndex();
+    QModelIndex xrow = ui->tableView->model()->index(row.row(),0);
+    QVariant data = ui->tableView->model()->data(xrow);
+    QString bookingBookId = data.toString();
+    if(bookingBookId == NULL || bookingBookId == ""){
+        QMessageBox::information(NULL,"提示","输入为空！");
+    }
+    else{
+        QSqlQuery query;
+        query.exec("SELECT * FROM books WHERE id = \'" + bookingBookId + "\' ;");
+        if(query.next()){
+            int leftPos = query.record().indexOf("left");
+            int left = query.value(leftPos).toInt();
+            int booking = query.value(query.record().indexOf("booking")).toInt();
+
+            query.exec("SELECT * FROM borrow WHERE readerid = \'" + this->readerId + "\' ;");
+
+            while(query.next()){
+                QString backDateString = query.value(query.record().indexOf("shouldbackDate")).toString();
+                QDate backDate = QDate(backDateString.left(4).toInt(),backDateString.mid(5,2).toInt(),backDateString.right(2).toInt());
+                QDate currentDate = QDate::currentDate();
+                if(Tools::largerYearIsInLeft(currentDate,backDate)){
+                    QMessageBox::information(NULL,"提示","您还有逾期的书籍没有还，请先还书后再进行预约操作。");
+                    return;
+                }
+            }
+            if(left > 0){
+                QString bookingStartDate = QDate::currentDate().toString("yyyy-MM-dd");
+                QString bookingEndDate = Tools::addDaysOnDate(QDate::currentDate(),15).toString("yyyy-MM-dd");
+                QString sql = "INSERT INTO booking(readerid,bookid,bookingStartDate,bookingEndDate) VALUES(\'" + this->readerId + "\',\'" + bookingBookId + "\',\'" + bookingStartDate + "\',\'" + bookingEndDate + "\')";
+                if(query.exec(sql)){
+                    QMessageBox::information(NULL,"提示","预约成功，请在15天之内到图书馆进行借阅");
+                    readerbord->bookingInit();
+                    booking++;
+                    QString sql = "UPDATE books SET booking = " +  QString("%1").arg(booking) + " WHERE id = \'" + bookingBookId + "\' ; ";
+                    query.exec(sql);
+                    return;
+                }
+                else{
+                        QMessageBox::information(NULL,"提示","预约失败");
+                        qDebug()<<sql;
+                        return;
+                }
+            }
+            else{
+                QString sql = "INSERT INTO booking(readerid,bookid,bookingStartDate,bookingEndDate) VALUES(\'" + this->readerId + "\',\'" + bookingBookId + "\',\'0\',\'0\')";
+                if(query.exec(sql)){
+                    QMessageBox::information(NULL,"提示","预约成功，有读者归还此书时将第一时间通知您，并且您需要在归还的15天内到图书馆进行借阅。");
+                    booking++;
+                    QString sql = "UPDATE books SET booking = " +  QString("%1").arg(booking) + " WHERE id = \'" + bookingBookId + "\' ; ";
+                    query.exec(sql);
+                    return;
+                }
             }
         }
         QMessageBox::information(NULL,"提示","未查询到相应书籍！");

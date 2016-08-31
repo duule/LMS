@@ -61,10 +61,11 @@ void BorrowBord::buttonBoxAcceptOnClicked(){
                             query.exec("UPDATE books SET `left` = " + QString("%1").arg(newLeft) + " WHERE id = \'" + borrowBookId + "\' ;");
                             query.exec("UPDATE readers SET `hasBorrow` = " + QString("%1").arg(newHasBorrow) + " WHERE id = \'" + this->readerId + "\' ;");
                             if(booked){
-                                query.exec("DELETE FROM booking WHERE readerid = \'" + this->readerId + "\' AND bookid = \'" + borrowBookId + "\' ;");
+                                query.exec("DELETE FROM booking WHERE readerid = \'" + this->readerId + "\' AND bookid = \'" + borrowBookId + "\' LIMIT 1;");
                                 query.exec("UPDATE books SET booking = " +  QString("%1").arg(booking) + " WHERE id = \'" + borrowBookId + "\' ; ");
                             }
                             rb->init();
+                            rb->bookingInit();
                             return;
                         }
                         else{

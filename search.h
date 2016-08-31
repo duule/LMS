@@ -31,6 +31,7 @@ private:
 private slots:
     void searchButtonOnClicked();
     void borrowButtonOnClicked();
+    void bookingButtonOnClicked();
 };
 
 #endif // SEARCH_H
