@@ -75,7 +75,7 @@ void AddReaderBord::addButtonOnClicked(){
 
     QString sql,success,failed;
     if(this->type == "add") {
-        sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow,verify,daylong) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + id + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ",\'已审核\'," + daylong + ");";
+        sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow,verify,daylong) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + id + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ",\'已审核\'," + QString("%1").arg(daylong) + ");";
         success = "添加成功！";
         failed = "添加失败！";
     }

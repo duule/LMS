@@ -9,16 +9,26 @@
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QDate>
+#include <QSqlError>
+#include <QFile>
+#include <QIODevice>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QFile styleFile("/Users/Dule/Documents/study/qt/LMS/style.qss");
+    styleFile.open(QIODevice::ReadOnly);
+    QString styleFileString(styleFile.readAll());
+//    QApplication::se;
+    a.setStyleSheet(styleFileString);
     MainWindow w;
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("127.0.0.1");
+    QSqlError err;
+//    db.setHostName("127.0.0.1");
+    db.setHostName("183.175.12.162");
     db.setDatabaseName("LMS");
     db.setUserName("root");
-    db.setPassword("Tami16.");
+    db.setPassword("Tami16!!");
     if (db.open()) {
         QSqlQuery query;
         query.exec("SELECT * FROM booking ;");
@@ -37,6 +47,14 @@ int main(int argc, char *argv[])
 
         w.show();
     }
-    else{QMessageBox::information(NULL,"提示","数据库连接失败！");w.close();a.quit();return 0;}
+    else{
+        err = db.lastError();
+        qDebug()<<err;
+        QString e = err.text();
+        QMessageBox::information(NULL,"提示","数据库连接失败！(" + e + ")");
+        w.close();
+        a.quit();
+        return 0;
+    }
     return a.exec();
 }

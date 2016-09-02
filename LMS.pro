@@ -62,3 +62,6 @@ FORMS    += mainwindow.ui \
     addreaderbord.ui \
     readerregister.ui \
     bookingbord.ui
+
+DISTFILES += \
+    style.qss

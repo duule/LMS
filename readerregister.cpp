@@ -66,7 +66,7 @@ void ReaderRegister::registerButtonOnClicked(){
     else if(password == NULL || password == ""){ui->lb_passwarn->show();return;}
     else if(password != passwordRepet){ui->lb_reptwarn->show();return;}
 
-    QString sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow,verify,daylong) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + password + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ",\'未审核\'," + daylong + ");";
+    QString sql = "INSERT INTO readers(id,`name`,department,type,password,maxBorrow,hasBorrow,verify,daylong) VALUES(\'" + id + "\',\'" + name + "\',\'" + department + "\',\'" + type + "\',\'" + password + "\'," + QString("%1").arg(maxBorrow) + "," + QString("%1").arg(hasBorrow) + ",\'未审核\'," + QString("%1").arg(daylong) + ");";
     qDebug()<<sql;
     QSqlQuery query;
     bool ret = query.exec(sql);
